@@ -5,7 +5,7 @@ export const AddRecipe = text => ({
   text
 });
 
-export const RemoveRecipe = id => ({
+export const removeRecipe = id => ({
   type: "REMOVE_RECIPE",
   id
 });

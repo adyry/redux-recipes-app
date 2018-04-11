@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { AddRecipe, RemoveRecipe } from "./actions/index";
+import { AddRecipe } from "./actions/index";
 import { RecipesList } from "./recipesList";
 
 let App = ({ adrian, dispatch }) => {
