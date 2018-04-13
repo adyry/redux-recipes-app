@@ -4,7 +4,6 @@ import { Field } from "redux-form";
 
 const RecipeForm = ({ AddRecipe }) => {
   let input;
-
   return (
     <form
       onSubmit={e => {
