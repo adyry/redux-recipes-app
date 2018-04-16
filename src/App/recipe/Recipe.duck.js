@@ -8,7 +8,10 @@ const REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE";
 export const recipesReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_RECIPE:
-      return [...state, { text: action.text, id: action.id }];
+      return [
+        ...state,
+        { text: action.text, id: action.id, author: action.author }
+      ];
     case REMOVE_RECIPE:
       return [...state].filter(v => !(v.id === action.id));
     default:
@@ -18,10 +21,11 @@ export const recipesReducer = (state = [], action) => {
 
 // Simple Actions
 let id = 0;
-export const AddRecipe = text => ({
+export const AddRecipe = (text, author) => ({
   type: ADD_RECIPE,
   id: id++,
-  text
+  text,
+  author
 });
 
 export const RemoveRecipe = id => ({

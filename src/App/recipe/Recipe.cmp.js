@@ -9,7 +9,7 @@ const Recipe = ({ RemoveRecipe, recipes }) => {
         <div key={v.id}>
           <ListItem
             onClick={() => RemoveRecipe(v.id)}
-            primaryText="Brunch this weekend?"
+            primaryText={v.author}
             secondaryText={<p>{v.text}</p>}
             secondaryTextLines={2}
           />
