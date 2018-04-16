@@ -21,5 +21,3 @@ const Recipe = ({ RemoveRecipe, recipes }) => {
 };
 
 export { Recipe };
-
-// b
