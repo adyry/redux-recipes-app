@@ -2,18 +2,11 @@ import React from "react";
 import RaisedButton from "material-ui/RaisedButton";
 import { Field } from "redux-form";
 
-const RecipeForm = ({ AddRecipe }) => {
+const RecipeForm = props => {
+  const { handleSubmit } = props;
   let input;
   return (
-    <form
-      onSubmit={e => {
-        console.log(e);
-        e.preventDefault();
-        // AddRecipe(input.value);
-        // input.value = "";
-      }}
-    >
-      {/* <input ref={val => (input = val)} /> */}
+    <form onSubmit={handleSubmit}>
       <Field name="recipe" component="input" type="text" />
       <Field name="firstName" component="input" type="text" />
       <RaisedButton type="submit">Add</RaisedButton>

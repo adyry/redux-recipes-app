@@ -7,9 +7,14 @@ const mapDispatchToProps = dispatch => ({
   AddRecipe: text => dispatch(AddRecipe(text))
 });
 
+const submit = values => {
+  console.log("submitted", values);
+};
+
 // const RecipeFormCnt = connect(null, mapDispatchToProps)(RecipeForm);
 const RecipeFormCnt = reduxForm({
-  form: "recipe"
+  form: "recipe",
+  onSubmit: submit
 })(RecipeForm);
 
 export default RecipeFormCnt;
