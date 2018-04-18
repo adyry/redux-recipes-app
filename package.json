@@ -1,24 +1,32 @@
 {
-  "name": "reduxsaga",
+  "name": "recipesredux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "material-ui": "^0.20.0",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.1.4",
+    "react-scripts-ts": "2.15.1",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
     "redux-form-material-ui": "^4.3.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "redux-devtools": "^3.4.1"
+    "@types/jest": "^22.2.3",
+    "@types/material-ui": "^0.21.1",
+    "@types/node": "^9.6.5",
+    "@types/react": "^16.3.11",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-redux": "^5.0.16",
+    "@types/redux-form": "^7.2.3",
+    "redux-devtools": "^3.4.1",
+    "typescript": "^2.8.1"
   }
 }
