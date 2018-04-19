@@ -5,12 +5,14 @@ import { Provider } from "react-redux";
 import App from "./App/App.cmp";
 import registerServiceWorker from "./registerServiceWorker";
 
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./App/App.duck";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-const store = createStore(rootReducer);
+import ClassToObj from "./shared/middleware/ClassToObj";
+
+const store = createStore(rootReducer, applyMiddleware(ClassToObj));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,4 +23,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 registerServiceWorker();
- 

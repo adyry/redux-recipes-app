@@ -4,8 +4,7 @@ import { Recipe } from "./Recipe.cmp";
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
   onRecipeClick(e: Event) {
-    const action = Object.assign({}, new RemoveRecipe({ id: ownProps.id }));
-    dispatch(action);
+    dispatch(new RemoveRecipe({ id: ownProps.id }));
   }
 });
 

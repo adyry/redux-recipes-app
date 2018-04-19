@@ -7,8 +7,7 @@ import { reduxForm } from "redux-form";
 
 const mapDispatchToProps = (dispatch: any) => ({
   onSubmit: (formValues: { author: string; recipe: string }) => {
-    const action = Object.assign({}, new AddRecipe(formValues));
-    dispatch(action);
+    dispatch(new AddRecipe(formValues));
   }
 });
 
