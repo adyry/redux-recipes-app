@@ -2,14 +2,14 @@ import Divider from "material-ui/Divider";
 import { ListItem } from "material-ui/List";
 import React from "react";
 
-export interface IProps {
+export interface IRecipeProps {
   id: number;
   onRecipeClick: any;
   author: string;
   text: string;
 }
 
-const Recipe = ({ id, onRecipeClick, author, text }: IProps) => {
+const Recipe = ({ id, onRecipeClick, author, text }: IRecipeProps) => {
   return (
     <div key={id}>
       <ListItem

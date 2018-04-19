@@ -4,19 +4,11 @@ import { Action, combineReducers } from "redux";
 const ADD_RECIPE: string = "app/recipes/ADD_RECIPE";
 const REMOVE_RECIPE: string = "app/recipes/REMOVE_RECIPE";
 
-// interface IAddRecipe {
-//   author: string;
-//   id: number;
-//   text: string;
-//   type: "app/recipes/ADD_RECIPE";
-// }
-
 enum TypeKeys {
   ADD_RECIPE = "app/recipes/ADD_RECIPE",
   REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE"
 }
 
-// Simple Actions
 export class AddRecipe implements Action {
   public type: TypeKeys.ADD_RECIPE = TypeKeys.ADD_RECIPE;
   constructor(public payload: any) {}
@@ -26,11 +18,6 @@ export class RemoveRecipe implements Action {
   public type: TypeKeys.REMOVE_RECIPE = TypeKeys.REMOVE_RECIPE;
   constructor(public payload: any) {}
 }
-
-// interface IRemoveRecipe {
-//   id: number;
-//   type: "app/recipes/REMOVE_RECIPE";
-// }
 
 type RecipeAction = AddRecipe | RemoveRecipe;
 

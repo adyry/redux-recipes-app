@@ -4,7 +4,6 @@ import recipeReducer from "./Recipes/Recipes.duck";
 
 export default combineReducers({
   app: combineReducers({
-    // form: recipeForm,
     recipes: recipeReducer
   }),
   form: formReducer

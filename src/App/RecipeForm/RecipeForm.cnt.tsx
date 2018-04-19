@@ -5,10 +5,6 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { reduxForm } from "redux-form";
 
-// const mapStateToProps = state => ({
-// initialValues:
-// });
-
 const mapDispatchToProps = (dispatch: any) => ({
   onSubmit: (formValues: { author: string; recipe: string }) => {
     const action = Object.assign({}, new AddRecipe(formValues));
