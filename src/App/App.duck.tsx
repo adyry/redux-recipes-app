@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import recipeReducer from "./recipe/Recipe.duck";
-// import recipeForm from "./RecipeForm/RecipeForm.duck";
+import recipeReducer from "./Recipes/Recipes.duck";
 
 export default combineReducers({
   app: combineReducers({

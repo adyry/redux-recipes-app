@@ -42,6 +42,7 @@ export const recipesReducer = (
 ): IRecipeState => {
   switch (action.type) {
     case ADD_RECIPE:
+      window.console.log(action);
       return [
         ...state,
         {
@@ -51,6 +52,7 @@ export const recipesReducer = (
         }
       ];
     case REMOVE_RECIPE:
+      window.console.log(action);
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;

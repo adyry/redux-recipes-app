@@ -1,4 +1,4 @@
-import { AddRecipe } from "../recipe/Recipe.duck";
+import { AddRecipe } from "../Recipes/Recipes.duck";
 import RecipeForm from "./RecipeForm.cmp";
 
 import { connect } from "react-redux";

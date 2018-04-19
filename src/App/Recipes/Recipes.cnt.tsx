@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
-import { Recipe } from "./Recipe.cmp";
-import { listSelector, RemoveRecipe } from "./Recipe.duck";
+import { Recipes } from "./Recipes.cmp";
+import { listSelector } from "./Recipes.duck";
 
 const mapStateToProps = (state: any) => ({
   recipes: listSelector(state)
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  onRecipeClick(id: any) {
-    const action = Object.assign({}, new RemoveRecipe(id));
-    dispatch(action);
-  }
-});
+// const mapDispatchToProps = (dispatch: any) => ({
+//   onRecipeClick(id: any) {
+//     const action = Object.assign({}, new RemoveRecipe(id));
+//     dispatch(action);
+//   }
+// });
 
 // Shorthand notation for MapDispatch used (bc. arguments are the same)-> { onRecipeClick: RemoveRecipe }
 
@@ -19,6 +19,6 @@ const mapDispatchToProps = (dispatch: any) => ({
 //   Recipe
 // );
 
-const RecipesList = connect(mapStateToProps, mapDispatchToProps)(Recipe);
+const RecipesList = connect(mapStateToProps)(Recipes);
 
 export { RecipesList };
