@@ -9,14 +9,15 @@ import { reduxForm } from "redux-form";
 // initialValues:
 // });
 
-// const mapDispatchToProps = dispatch => ({
-//   onSubmit: formValues => {
-//     dispatch(AddRecipe(formValues));
-//   }
-// });
+const mapDispatchToProps = (dispatch: any) => ({
+  onSubmit: (formValues: { author: string; recipe: string }) => {
+    const action = Object.assign({}, new AddRecipe(formValues));
+    dispatch(action);
+  }
+});
 
 export default compose(
-  connect(null, { onSubmit: AddRecipe }),
+  connect(null, mapDispatchToProps),
   reduxForm({
     form: "recipe"
     // reinitialize: true

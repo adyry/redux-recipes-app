@@ -8,8 +8,8 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   onRecipeClick(id: any) {
-    window.console.log(RemoveRecipe(id));
-    // dispatch(RemoveRecipe(id));
+    const action = Object.assign({}, new RemoveRecipe(id));
+    dispatch(action);
   }
 });
 

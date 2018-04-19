@@ -13,7 +13,7 @@ const Recipe = ({ onRecipeClick, recipes }: IProps) => {
       {recipes.map(v => (
         <div key={v.id}>
           <ListItem
-            onClick={onRecipeClick(v.id)}
+            // onClick={onRecipeClick(v.id)}
             primaryText={v.author}
             secondaryText={<p>{v.text}</p>}
             secondaryTextLines={2}
