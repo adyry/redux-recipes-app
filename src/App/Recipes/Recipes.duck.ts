@@ -1,9 +1,6 @@
 import { Action, combineReducers } from "redux";
 
 // Actions
-const ADD_RECIPE: string = "app/recipes/ADD_RECIPE";
-const REMOVE_RECIPE: string = "app/recipes/REMOVE_RECIPE";
-
 enum TypeKeys {
   ADD_RECIPE = "app/recipes/ADD_RECIPE",
   REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE"
@@ -28,8 +25,7 @@ export const recipesReducer = (
   action: RecipeAction
 ): IRecipeState => {
   switch (action.type) {
-    case ADD_RECIPE:
-      window.console.log(action);
+    case TypeKeys.ADD_RECIPE:
       return [
         ...state,
         {
@@ -38,8 +34,7 @@ export const recipesReducer = (
           text: action.payload.recipe
         }
       ];
-    case REMOVE_RECIPE:
-      window.console.log(action);
+    case TypeKeys.REMOVE_RECIPE:
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;

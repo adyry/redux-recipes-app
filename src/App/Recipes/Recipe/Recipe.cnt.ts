@@ -1,8 +1,12 @@
 import { connect } from "react-redux";
+import { Action, Dispatch } from "redux";
 import { RemoveRecipe } from "./../Recipes.duck";
-import { Recipe } from "./Recipe.cmp";
+import { IRecipeProps, Recipe } from "./Recipe.cmp";
 
-const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch<Action>,
+  ownProps: IRecipeProps
+) => ({
   onRecipeClick(e: Event) {
     dispatch(new RemoveRecipe({ id: ownProps.id }));
   }
