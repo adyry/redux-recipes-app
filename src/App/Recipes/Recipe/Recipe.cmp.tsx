@@ -1,6 +1,6 @@
+import React from "react";
 import Divider from "material-ui/Divider";
 import { ListItem } from "material-ui/List";
-import React from "react";
 
 export interface IRecipeProps {
   id: number;
