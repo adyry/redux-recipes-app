@@ -4,12 +4,12 @@ import { reducer as formReducer } from "redux-form";
 import notificationsReducer, {
   INotificationsListState
 } from "./Notifications/Notifications.duck";
-import recipeReducer, { IRecipeState } from "./Recipes/Recipes.duck";
+import recipeReducer, { IRecipeListState } from "./Recipes/Recipes.duck";
 
 export interface IRootState {
   app: {
     notifications: INotificationsListState;
-    recipes: IRecipeState;
+    recipes: IRecipeListState;
   };
   form: any;
 }

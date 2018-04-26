@@ -9,12 +9,12 @@ enum TypeKeys {
 
 export class AddNotification implements Action {
   public type: TypeKeys.ADD_NOTIFICATION = TypeKeys.ADD_NOTIFICATION;
-  constructor(public payload: any) {}
+  constructor(public payload: { text: string; id: number }) {}
 }
 
 export class HideNotification implements Action {
   public type: TypeKeys.HIDE_NOTIFICATION = TypeKeys.HIDE_NOTIFICATION;
-  constructor(public payload: any) {}
+  constructor(public payload: { id: number }) {}
 }
 
 type NotificationAction = AddNotification | HideNotification;

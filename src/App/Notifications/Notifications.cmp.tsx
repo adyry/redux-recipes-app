@@ -3,10 +3,10 @@ import React, { SFC } from "react";
 import { List } from "material-ui/List";
 
 import Notification from "./Notification/Notification.cmp";
+import { INotificationsListState } from "./Notifications.duck";
 
 export interface INotifs {
-  notifications: { list: Array<{ id: number; text: string }> };
-  dispatch: any;
+  notifications: INotificationsListState;
 }
 
 const Notifications: SFC<INotifs> = ({ notifications }) => {

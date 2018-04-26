@@ -51,3 +51,7 @@ export default combineReducers({
 
 export interface IRecipeState
   extends Array<{ text: string; id: number; author: string }> {}
+
+export interface IRecipeListState {
+  list: Array<{ text: string; id: number; author: string }>;
+}
