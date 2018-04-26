@@ -1,9 +1,13 @@
 import { connect } from "react-redux";
 import { IRootState } from "./../App.duck";
 import { Recipes } from "./Recipes.cmp";
-import { listSelector } from "./Recipes.duck";
+import { IRecipeState, listSelector } from "./Recipes.duck";
 
-const mapStateToProps = (state: IRootState) => ({
+export interface IMapProps {
+  recipes: IRecipeState;
+}
+
+const mapStateToProps = (state: IRootState): IMapProps => ({
   recipes: listSelector(state)
 });
 

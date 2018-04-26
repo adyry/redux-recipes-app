@@ -2,15 +2,14 @@ import React, { SFC } from "react";
 
 import Divider from "material-ui/Divider";
 import { ListItem } from "material-ui/List";
+import { IDispatchProps, IOwnProps } from "./Recipe.cnt";
 
-export interface IRecipeProps {
-  id: number;
-  onRecipeClick: any;
-  author: string;
-  text: string;
-}
-
-const Recipe: SFC<IRecipeProps> = ({ id, onRecipeClick, author, text }) => {
+const Recipe: SFC<IOwnProps & IDispatchProps> = ({
+  id,
+  onRecipeClick,
+  author,
+  text
+}) => {
   return (
     <div key={id}>
       <ListItem

@@ -1,11 +1,18 @@
 import { connect } from "react-redux";
 
 import Notifications from "./Notifications.cmp";
-import { notificationsSelector } from "./Notifications.duck";
+import {
+  INotificationsListState,
+  notificationsSelector
+} from "./Notifications.duck";
 
 import { IRootState } from "./../App.duck";
 
-const mapStateToProps = (state: IRootState) => ({
+export interface IStateProps {
+  notifications: INotificationsListState;
+}
+
+const mapStateToProps = (state: IRootState): IStateProps => ({
   notifications: notificationsSelector(state)
 });
 

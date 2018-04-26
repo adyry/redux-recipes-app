@@ -1,18 +1,28 @@
 import { connect } from "react-redux";
 import { Action, Dispatch } from "redux";
 import { RemoveRecipe } from "./../Recipes.duck";
-import { IRecipeProps, Recipe } from "./Recipe.cmp";
+import { Recipe } from "./Recipe.cmp";
+
+export interface IOwnProps {
+  id: number;
+  author: string;
+  text: string;
+}
+
+export interface IDispatchProps {
+  onRecipeClick: any;
+}
 
 const mapDispatchToProps = (
   dispatch: Dispatch<Action>,
-  ownProps: IRecipeProps
+  ownProps: IOwnProps
 ) => ({
   onRecipeClick(e: Event) {
     dispatch(new RemoveRecipe({ id: ownProps.id }));
   }
 });
 
-const RecipeCnt: any = connect(null, mapDispatchToProps)(Recipe);
+const RecipeCnt = connect(null, mapDispatchToProps)(Recipe);
 
 export default RecipeCnt;
 

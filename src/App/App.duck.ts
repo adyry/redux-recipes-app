@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
+import { FormReducer, reducer as formReducer } from "redux-form";
 
 import notificationsReducer, {
   INotificationsListState
@@ -11,7 +11,7 @@ export interface IRootState {
     notifications: INotificationsListState;
     recipes: IRecipeListState;
   };
-  form: any;
+  form: FormReducer;
 }
 
 export default combineReducers({
