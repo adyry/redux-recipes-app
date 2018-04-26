@@ -20,7 +20,6 @@ export class HideNotification implements Action {
 type NotificationAction = AddNotification | HideNotification;
 
 // Reducers
-let id = 0;
 export const notificationsReducer = (
   state: INotificationsList = [],
   action: NotificationAction
@@ -30,7 +29,7 @@ export const notificationsReducer = (
       return [
         ...state,
         {
-          id: id++,
+          id: action.payload.id,
           text: action.payload.text
         }
       ];
@@ -59,4 +58,14 @@ export interface INotificationsList
 
 export interface INotificationsListState {
   list: INotificationsList;
+}
+
+// Complex Actions / Thunks
+let nextNotificationId = 0;
+export function showNotificationWithTimeout(dispatch: any, text: string) {
+  const id = nextNotificationId++;
+  dispatch(new AddNotification({ text: "recipe added", id }));
+  setTimeout(() => {
+    dispatch(new HideNotification({ id }));
+  }, 3000);
 }
