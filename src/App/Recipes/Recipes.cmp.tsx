@@ -1,12 +1,13 @@
 import { List } from "material-ui/List";
-import React from "react";
+import React, { SFC } from "react";
 import Recipe from "./Recipe/Recipe.cnt";
+import { IRecipeState } from "./Recipes.duck";
 
 export interface IProps {
-  recipes: any[];
+  recipes: IRecipeState;
 }
 
-const Recipes = ({ recipes }: IProps) => {
+const Recipes: SFC<IProps> = ({ recipes }) => {
   return (
     <List>
       {recipes.map(v => (

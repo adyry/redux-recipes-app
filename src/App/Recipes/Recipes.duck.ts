@@ -1,4 +1,5 @@
 import { Action, combineReducers } from "redux";
+import { IRootState } from "../App.duck";
 
 // Actions
 enum TypeKeys {
@@ -8,12 +9,12 @@ enum TypeKeys {
 
 export class AddRecipe implements Action {
   public type: TypeKeys.ADD_RECIPE = TypeKeys.ADD_RECIPE;
-  constructor(public payload: any) {}
+  constructor(public payload: { author: string; recipe: string }) {}
 }
 
 export class RemoveRecipe implements Action {
   public type: TypeKeys.REMOVE_RECIPE = TypeKeys.REMOVE_RECIPE;
-  constructor(public payload: any) {}
+  constructor(public payload: { id: number }) {}
 }
 
 type RecipeAction = AddRecipe | RemoveRecipe;
@@ -42,7 +43,7 @@ export const recipesReducer = (
 };
 
 // Selectors
-export const listSelector = (state: any): IRecipeState =>
+export const listSelector = (state: IRootState): IRecipeState =>
   state.app.recipes.list;
 
 export default combineReducers({
@@ -53,5 +54,5 @@ export interface IRecipeState
   extends Array<{ text: string; id: number; author: string }> {}
 
 export interface IRecipeListState {
-  list: Array<{ text: string; id: number; author: string }>;
+  list: IRecipeState;
 }

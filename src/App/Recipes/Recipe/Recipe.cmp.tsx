@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SFC } from "react";
 
 import Divider from "material-ui/Divider";
 import { ListItem } from "material-ui/List";
@@ -10,7 +10,7 @@ export interface IRecipeProps {
   text: string;
 }
 
-const Recipe = ({ id, onRecipeClick, author, text }: IRecipeProps) => {
+const Recipe: SFC<IRecipeProps> = ({ id, onRecipeClick, author, text }) => {
   return (
     <div key={id}>
       <ListItem

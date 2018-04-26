@@ -12,12 +12,12 @@ const mapDispatchToProps = (
   }
 });
 
+const RecipeCnt = connect(null, mapDispatchToProps)(Recipe);
+
+export default RecipeCnt;
+
 // Shorthand notation for MapDispatch used (bc. arguments are the same)-> { onRecipeClick: RemoveRecipe }
 
 // const RecipesList = connect(mapStateToProps, { onRecipeClick: RemoveRecipe })(
 //   Recipe
 // );
-
-const RecipeCnt: any = connect(null, mapDispatchToProps)(Recipe);
-
-export default RecipeCnt;
