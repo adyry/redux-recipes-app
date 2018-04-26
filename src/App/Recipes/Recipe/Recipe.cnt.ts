@@ -12,7 +12,7 @@ const mapDispatchToProps = (
   }
 });
 
-const RecipeCnt = connect(null, mapDispatchToProps)(Recipe);
+const RecipeCnt: any = connect(null, mapDispatchToProps)(Recipe);
 
 export default RecipeCnt;
 

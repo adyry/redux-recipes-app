@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import { IRootState } from "./../App.duck";
 import { Recipes } from "./Recipes.cmp";
 import { listSelector } from "./Recipes.duck";
-import { IRootState } from "./../App.duck";
 
 const mapStateToProps = (state: IRootState) => ({
   recipes: listSelector(state)
