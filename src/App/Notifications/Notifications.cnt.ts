@@ -1,25 +1,14 @@
 import { connect } from "react-redux";
-// import { Action, Dispatch } from "redux";
-// import { RemoveRecipe } from "./../Recipes.duck";
+
 import Notifications from "./Notifications.cmp";
+import { notificationsSelector } from "./Notifications.duck";
 
-// const mapDispatchToProps = (
-//   dispatch: Dispatch<Action>,
-//   ownProps: IRecipeProps
-// ) => ({
-//   onRecipeClick(e: Event) {
-//     dispatch(new RemoveRecipe({ id: ownProps.id }));
-//   }
-// });
+import { IRootState } from "./../App.duck";
 
-// Shorthand notation for MapDispatch used (bc. arguments are the same)-> { onRecipeClick: RemoveRecipe }
+const mapStateToProps = (state: IRootState) => ({
+  notifications: notificationsSelector(state)
+});
 
-// const RecipesList = connect(mapStateToProps, { onRecipeClick: RemoveRecipe })(
-//   Recipe
-// );
-
-const NotificationsCnt: any = connect(null, (state: any) => state)(
-  Notifications
-);
+const NotificationsCnt = connect(mapStateToProps)(Notifications);
 
 export default NotificationsCnt;

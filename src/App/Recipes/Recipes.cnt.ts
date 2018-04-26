@@ -8,4 +8,4 @@ const mapStateToProps = (state: any) => ({
 
 const RecipesList = connect(mapStateToProps)(Recipes);
 
-export { RecipesList };
+export default RecipesList;

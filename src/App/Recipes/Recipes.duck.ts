@@ -49,5 +49,5 @@ export default combineReducers({
   list: recipesReducer
 });
 
-interface IRecipeState
+export interface IRecipeState
   extends Array<{ text: string; id: number; author: string }> {}

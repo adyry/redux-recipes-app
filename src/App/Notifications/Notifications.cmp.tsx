@@ -1,15 +1,19 @@
-import React from "react";
+import React, { SFC } from "react";
 
 import { List } from "material-ui/List";
-import Notification from "./Notification/Notification.cnt";
 
-export interface IProps {
-  elements: Array<{id: number; text: string}>;
+import Notification from "./Notification/Notification.cmp";
+
+export interface INotifs {
+  notifications: { list: Array<{ id: number; text: string }> };
+  dispatch: any;
 }
 
-const Notifications = ({ elements }: IProps) => {
+const Notifications: SFC<INotifs> = ({ notifications }) => {
   return (
-    <List>{elements.map(v => <Notification key={v.id} text={v.text} />)}</List>
+    <List>
+      {notifications.list.map(v => <Notification key={v.id} text={v.text} />)}
+    </List>
   );
 };
 

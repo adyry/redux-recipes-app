@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
+// import { composeWithDevTools } from "redux-devtools-extension";
+
 import App from "./App/App.cmp";
 import registerServiceWorker from "./registerServiceWorker";
 

@@ -1,40 +1,40 @@
 import { Action, combineReducers } from "redux";
+import { IRootState } from "../App.duck";
 
 // Actions
 enum TypeKeys {
-  ADD_RECIPE = "app/recipes/ADD_RECIPE",
-  REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE"
+  ADD_NOTIFICATION = "app/notifications/ADD_NOTIFICATION",
+  HIDE_NOTIFICATION = "app/notifications/HIDE_NOTIFICATION"
 }
 
-export class AddRecipe implements Action {
-  public type: TypeKeys.ADD_RECIPE = TypeKeys.ADD_RECIPE;
+export class AddNotification implements Action {
+  public type: TypeKeys.ADD_NOTIFICATION = TypeKeys.ADD_NOTIFICATION;
   constructor(public payload: any) {}
 }
 
-export class RemoveRecipe implements Action {
-  public type: TypeKeys.REMOVE_RECIPE = TypeKeys.REMOVE_RECIPE;
+export class HideNotification implements Action {
+  public type: TypeKeys.HIDE_NOTIFICATION = TypeKeys.HIDE_NOTIFICATION;
   constructor(public payload: any) {}
 }
 
-type RecipeAction = AddRecipe | RemoveRecipe;
+type NotificationAction = AddNotification | HideNotification;
 
 // Reducers
 let id = 0;
-export const recipesReducer = (
-  state: IRecipeState = [],
-  action: RecipeAction
-): IRecipeState => {
+export const notificationsReducer = (
+  state: INotificationsList = [],
+  action: NotificationAction
+): INotificationsList => {
   switch (action.type) {
-    case TypeKeys.ADD_RECIPE:
+    case TypeKeys.ADD_NOTIFICATION:
       return [
         ...state,
         {
-          author: action.payload.author,
           id: id++,
-          text: action.payload.recipe
+          text: action.payload.text
         }
       ];
-    case TypeKeys.REMOVE_RECIPE:
+    case TypeKeys.HIDE_NOTIFICATION:
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;
@@ -42,12 +42,21 @@ export const recipesReducer = (
 };
 
 // Selectors
-export const listSelector = (state: any): IRecipeState =>
-  state.app.recipes.list;
+export const notificationsSelector = (
+  state: IRootState
+): INotificationsListState => state.app.notifications;
+
+export const notificationsListSelector = (
+  state: IRootState
+): INotificationsList => state.app.notifications.list;
 
 export default combineReducers({
-  list: recipesReducer
+  list: notificationsReducer
 });
 
-interface IRecipeState
-  extends Array<{ text: string; id: number; author: string }> {}
+export interface INotificationsList
+  extends Array<{ text: string; id: number }> {}
+
+export interface INotificationsListState {
+  list: INotificationsList;
+}
