@@ -9,8 +9,9 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
+
 import rootReducer from "./App/App.duck";
-import notificationsSaga from "./App/Notifications/Notifications.saga";
+import { notifSaga } from "./App/Notifications/Notifications.duck";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
@@ -23,7 +24,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware, ClassToObj))
 );
 
-sagaMiddleware.run(notificationsSaga);
+sagaMiddleware.run(notifSaga);
 
 ReactDOM.render(
   <Provider store={store}>

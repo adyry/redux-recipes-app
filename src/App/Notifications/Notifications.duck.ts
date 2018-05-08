@@ -1,8 +1,12 @@
+import { delay } from "redux-saga";
+import { call, put, takeEvery } from "redux-saga/effects";
+
 import { Action, combineReducers } from "redux";
 import { IRootState } from "../App.duck";
+import { RecipeTypes } from "../Recipes/Recipes.duck";
 
 // Actions
-enum TypeKeys {
+enum NotificationTypes {
   ADD_NOTIFICATION = "app/notifications/ADD_NOTIFICATION",
   HIDE_NOTIFICATION = "app/notifications/HIDE_NOTIFICATION",
   SHOW_NOTIFICATION = "app/notifications/SHOW_NOTIFICATION",
@@ -10,22 +14,22 @@ enum TypeKeys {
 }
 
 export class AddNotification implements Action {
-  public type: TypeKeys.ADD_NOTIFICATION = TypeKeys.ADD_NOTIFICATION;
+  public type: NotificationTypes.ADD_NOTIFICATION = NotificationTypes.ADD_NOTIFICATION;
   constructor(public payload: { text: string; id: number }) {}
 }
 
 export class ShowNotification implements Action {
-  public type: TypeKeys.SHOW_NOTIFICATION = TypeKeys.SHOW_NOTIFICATION;
+  public type: NotificationTypes.SHOW_NOTIFICATION = NotificationTypes.SHOW_NOTIFICATION;
   constructor(public payload: { id: number }) {}
 }
 
 export class HideNotification implements Action {
-  public type: TypeKeys.HIDE_NOTIFICATION = TypeKeys.HIDE_NOTIFICATION;
+  public type: NotificationTypes.HIDE_NOTIFICATION = NotificationTypes.HIDE_NOTIFICATION;
   constructor(public payload: { id: number }) {}
 }
 
 export class RemoveNotification implements Action {
-  public type: TypeKeys.REMOVE_NOTIFICATION = TypeKeys.REMOVE_NOTIFICATION;
+  public type: NotificationTypes.REMOVE_NOTIFICATION = NotificationTypes.REMOVE_NOTIFICATION;
   constructor(public payload: { id: number }) {}
 }
 
@@ -41,7 +45,7 @@ export const notificationsReducer = (
   action: NotificationAction
 ): INotificationsList => {
   switch (action.type) {
-    case TypeKeys.ADD_NOTIFICATION:
+    case NotificationTypes.ADD_NOTIFICATION:
       return [
         ...state,
         {
@@ -50,17 +54,17 @@ export const notificationsReducer = (
           text: action.payload.text
         }
       ];
-    case TypeKeys.SHOW_NOTIFICATION:
+    case NotificationTypes.SHOW_NOTIFICATION:
       return state.map(
         notif =>
           notif.id === action.payload.id ? { ...notif, open: true } : notif
       );
-    case TypeKeys.HIDE_NOTIFICATION:
+    case NotificationTypes.HIDE_NOTIFICATION:
       return state.map(
         notif =>
           notif.id === action.payload.id ? { ...notif, open: false } : notif
       );
-    case TypeKeys.REMOVE_NOTIFICATION:
+    case NotificationTypes.REMOVE_NOTIFICATION:
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;
@@ -87,18 +91,33 @@ export interface INotificationsListState {
   list: INotificationsList;
 }
 
-// Complex Actions / Thunks
+// Complex Actions
+
+const notifText = (type: RecipeTypes) => {
+  switch (type) {
+    case RecipeTypes.ADD_RECIPE:
+      return "added";
+    case RecipeTypes.REMOVE_RECIPE:
+      return "removed";
+    default:
+      return "unsupported action";
+  }
+};
+
 let nextNotificationId = 0;
-export function showNotificationWithTimeout(dispatch: any, text: string) {
+
+function* showNotificationWithTimeout(action: any) {
+  const text = notifText(action.type);
   const id = nextNotificationId++;
-  dispatch(new AddNotification({ text, id }));
-  setTimeout(() => {
-    dispatch(new ShowNotification({ id }));
-  }, 0);
-  setTimeout(() => {
-    dispatch(new HideNotification({ id }));
-    setTimeout(() => {
-      dispatch(new RemoveNotification({ id }));
-    }, 1000);
-  }, 3000);
+  yield put(new AddNotification({ text, id }));
+  yield call(delay, 60);
+  yield put(new ShowNotification({ id }));
+  yield call(delay, 3000);
+  yield put(new HideNotification({ id }));
+  yield call(delay, 60);
+  yield put(new RemoveNotification({ id }));
+}
+
+export function* notifSaga() {
+  yield takeEvery("app/recipes/ADD_RECIPE", showNotificationWithTimeout);
 }

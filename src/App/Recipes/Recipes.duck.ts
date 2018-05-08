@@ -2,18 +2,18 @@ import { Action, combineReducers } from "redux";
 import { IRootState } from "../App.duck";
 
 // Actions
-export enum TypeKeys {
+export enum RecipeTypes {
   ADD_RECIPE = "app/recipes/ADD_RECIPE",
   REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE"
 }
 
 export class AddRecipe implements Action {
-  public type: TypeKeys.ADD_RECIPE = TypeKeys.ADD_RECIPE;
+  public type: RecipeTypes.ADD_RECIPE = RecipeTypes.ADD_RECIPE;
   constructor(public payload: { author: string; recipe: string }) {}
 }
 
 export class RemoveRecipe implements Action {
-  public type: TypeKeys.REMOVE_RECIPE = TypeKeys.REMOVE_RECIPE;
+  public type: RecipeTypes.REMOVE_RECIPE = RecipeTypes.REMOVE_RECIPE;
   constructor(public payload: { id: number }) {}
 }
 
@@ -26,7 +26,7 @@ export const recipesReducer = (
   action: RecipeAction
 ): IRecipeState => {
   switch (action.type) {
-    case TypeKeys.ADD_RECIPE:
+    case RecipeTypes.ADD_RECIPE:
       return [
         ...state,
         {
@@ -35,7 +35,7 @@ export const recipesReducer = (
           text: action.payload.recipe
         }
       ];
-    case TypeKeys.REMOVE_RECIPE:
+    case RecipeTypes.REMOVE_RECIPE:
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;

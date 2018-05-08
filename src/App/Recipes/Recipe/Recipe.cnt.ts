@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { Action, Dispatch } from "redux";
-import { showNotificationWithTimeout } from "../../Notifications/Notifications.duck";
 import { RemoveRecipe } from "./../Recipes.duck";
 import { Recipe } from "./Recipe.cmp";
 
@@ -20,7 +19,6 @@ const mapDispatchToProps = (
 ) => ({
   onRecipeClick(e: Event) {
     dispatch(new RemoveRecipe({ id: ownProps.id }));
-    showNotificationWithTimeout(dispatch, "removed");
   }
 });
 

@@ -1,4 +1,3 @@
-// import { showNotificationWithTimeout } from "../Notifications/Notifications.duck";
 import { AddRecipe } from "../Recipes/Recipes.duck";
 import RecipeForm from "./RecipeForm.cmp";
 
@@ -9,7 +8,6 @@ import { reduxForm } from "redux-form";
 const mapDispatchToProps = (dispatch: any) => ({
   onSubmit: (formValues: { author: string; recipe: string }) => {
     dispatch(new AddRecipe(formValues));
-    // showNotificationWithTimeout(dispatch, `${formValues.author} recipe added`);
   }
 });
 
