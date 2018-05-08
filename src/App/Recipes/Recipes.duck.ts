@@ -2,7 +2,7 @@ import { Action, combineReducers } from "redux";
 import { IRootState } from "../App.duck";
 
 // Actions
-enum TypeKeys {
+export enum TypeKeys {
   ADD_RECIPE = "app/recipes/ADD_RECIPE",
   REMOVE_RECIPE = "app/recipes/REMOVE_RECIPE"
 }

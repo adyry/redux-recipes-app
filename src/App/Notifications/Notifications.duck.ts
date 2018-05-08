@@ -4,7 +4,9 @@ import { IRootState } from "../App.duck";
 // Actions
 enum TypeKeys {
   ADD_NOTIFICATION = "app/notifications/ADD_NOTIFICATION",
-  HIDE_NOTIFICATION = "app/notifications/HIDE_NOTIFICATION"
+  HIDE_NOTIFICATION = "app/notifications/HIDE_NOTIFICATION",
+  SHOW_NOTIFICATION = "app/notifications/SHOW_NOTIFICATION",
+  REMOVE_NOTIFICATION = "app/notifications/REMOVE_NOTIFICATION"
 }
 
 export class AddNotification implements Action {
@@ -12,12 +14,26 @@ export class AddNotification implements Action {
   constructor(public payload: { text: string; id: number }) {}
 }
 
+export class ShowNotification implements Action {
+  public type: TypeKeys.SHOW_NOTIFICATION = TypeKeys.SHOW_NOTIFICATION;
+  constructor(public payload: { id: number }) {}
+}
+
 export class HideNotification implements Action {
   public type: TypeKeys.HIDE_NOTIFICATION = TypeKeys.HIDE_NOTIFICATION;
   constructor(public payload: { id: number }) {}
 }
 
-type NotificationAction = AddNotification | HideNotification;
+export class RemoveNotification implements Action {
+  public type: TypeKeys.REMOVE_NOTIFICATION = TypeKeys.REMOVE_NOTIFICATION;
+  constructor(public payload: { id: number }) {}
+}
+
+type NotificationAction =
+  | AddNotification
+  | ShowNotification
+  | HideNotification
+  | RemoveNotification;
 
 // Reducers
 export const notificationsReducer = (
@@ -30,10 +46,21 @@ export const notificationsReducer = (
         ...state,
         {
           id: action.payload.id,
+          open: false,
           text: action.payload.text
         }
       ];
+    case TypeKeys.SHOW_NOTIFICATION:
+      return state.map(
+        notif =>
+          notif.id === action.payload.id ? { ...notif, open: true } : notif
+      );
     case TypeKeys.HIDE_NOTIFICATION:
+      return state.map(
+        notif =>
+          notif.id === action.payload.id ? { ...notif, open: false } : notif
+      );
+    case TypeKeys.REMOVE_NOTIFICATION:
       return [...state].filter(v => !(v.id === action.payload.id));
     default:
       return state;
@@ -54,7 +81,7 @@ export default combineReducers({
 });
 
 export interface INotificationsList
-  extends Array<{ text: string; id: number }> {}
+  extends Array<{ open: boolean; id: number; text: string }> {}
 
 export interface INotificationsListState {
   list: INotificationsList;
@@ -64,8 +91,14 @@ export interface INotificationsListState {
 let nextNotificationId = 0;
 export function showNotificationWithTimeout(dispatch: any, text: string) {
   const id = nextNotificationId++;
-  dispatch(new AddNotification({ text: "recipe added", id }));
+  dispatch(new AddNotification({ text, id }));
+  setTimeout(() => {
+    dispatch(new ShowNotification({ id }));
+  }, 0);
   setTimeout(() => {
     dispatch(new HideNotification({ id }));
+    setTimeout(() => {
+      dispatch(new RemoveNotification({ id }));
+    }, 1000);
   }, 3000);
 }

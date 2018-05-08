@@ -8,16 +8,22 @@ import App from "./App/App.cmp";
 import registerServiceWorker from "./registerServiceWorker";
 
 import { applyMiddleware, createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
 import rootReducer from "./App/App.duck";
+import notificationsSaga from "./App/Notifications/Notifications.saga";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import ClassToObj from "./shared/middleware/ClassToObj";
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(ClassToObj))
+  composeWithDevTools(applyMiddleware(sagaMiddleware, ClassToObj))
 );
+
+sagaMiddleware.run(notificationsSaga);
 
 ReactDOM.render(
   <Provider store={store}>

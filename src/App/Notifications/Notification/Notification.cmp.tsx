@@ -1,16 +1,15 @@
-import Divider from "material-ui/Divider";
-import { ListItem } from "material-ui/List";
+import Snackbar from "material-ui/Snackbar";
 import React, { SFC } from "react";
 
 export interface IOwnProps {
   text: string;
+  open: boolean;
 }
 
-const Notification: SFC<IOwnProps> = ({ text }) => {
+const Notification: SFC<IOwnProps> = ({ text, open }) => {
   return (
     <div>
-      <ListItem secondaryText={<p>{text}</p>} secondaryTextLines={2} />
-      <Divider inset={true} />
+      <Snackbar open={open} message={text} />
     </div>
   );
 };
