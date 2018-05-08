@@ -3,7 +3,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 import { Action, combineReducers } from "redux";
 import { IRootState } from "../App.duck";
-import { RecipeTypes } from "../Recipes/Recipes.duck";
+import { RecipeAction, RecipeTypes } from "../Recipes/Recipes.duck";
 
 // Actions
 enum NotificationTypes {
@@ -106,8 +106,7 @@ const notifText = (type: RecipeTypes) => {
 
 let nextNotificationId = 0;
 
-function* showNotificationWithTimeout(action: any) {
-  window.console.log(action);
+function* showNotificationWithTimeout(action: RecipeAction) {
   const text = notifText(action.type);
   const id = nextNotificationId++;
   yield put(new AddNotification({ text, id }));

@@ -17,7 +17,7 @@ export class RemoveRecipe implements Action {
   constructor(public payload: { id: number }) {}
 }
 
-type RecipeAction = AddRecipe | RemoveRecipe;
+export type RecipeAction = AddRecipe | RemoveRecipe;
 
 // Reducers
 let id = 0;
