@@ -107,6 +107,7 @@ const notifText = (type: RecipeTypes) => {
 let nextNotificationId = 0;
 
 function* showNotificationWithTimeout(action: any) {
+  window.console.log(action);
   const text = notifText(action.type);
   const id = nextNotificationId++;
   yield put(new AddNotification({ text, id }));
@@ -119,5 +120,8 @@ function* showNotificationWithTimeout(action: any) {
 }
 
 export function* notifSaga() {
-  yield takeEvery("app/recipes/ADD_RECIPE", showNotificationWithTimeout);
+  yield takeEvery(
+    [RecipeTypes.ADD_RECIPE, RecipeTypes.REMOVE_RECIPE],
+    showNotificationWithTimeout
+  );
 }
