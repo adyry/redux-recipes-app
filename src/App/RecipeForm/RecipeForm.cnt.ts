@@ -1,15 +1,15 @@
 import { AddRecipe } from "../Recipes/Recipes.duck";
 import RecipeForm from "./RecipeForm.cmp";
 
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
 import { compose } from "redux";
 import { reduxForm } from "redux-form";
 
 export interface IDispatchProps {
-  onSubmit: any;
+  onSubmit: Dispatch;
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onSubmit: (formValues: { author: string; recipe: string }) => {
     dispatch(new AddRecipe(formValues));
   }
