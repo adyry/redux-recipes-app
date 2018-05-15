@@ -14,13 +14,18 @@ export class AddRecipe implements Action {
 
 export class RemoveRecipe implements Action {
   public type: RecipeTypes.REMOVE_RECIPE = RecipeTypes.REMOVE_RECIPE;
-  constructor(public payload: { id: number }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export type RecipeAction = AddRecipe | RemoveRecipe;
 
 // Reducers
-let id = 0;
+const id = () =>
+  Date.now() +
+  Math.random()
+    .toString()
+    .slice(2);
+
 export const recipesReducer = (
   state: IRecipeState = [],
   action: RecipeAction
@@ -31,7 +36,7 @@ export const recipesReducer = (
         ...state,
         {
           author: action.payload.author,
-          id: id++,
+          id: id(),
           text: action.payload.recipe
         }
       ];
@@ -51,7 +56,7 @@ export default combineReducers({
 });
 
 export interface IRecipeState
-  extends Array<{ text: string; id: number; author: string }> {}
+  extends Array<{ text: string; id: string; author: string }> {}
 
 export interface IRecipeListState {
   list: IRecipeState;

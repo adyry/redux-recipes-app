@@ -3,7 +3,7 @@ import { RemoveRecipe } from "./../Recipes.duck";
 import { Recipe } from "./Recipe.cmp";
 
 export interface IOwnProps {
-  id: number;
+  id: string;
   author: string;
   text: string;
 }
